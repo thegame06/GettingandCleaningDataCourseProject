@@ -31,28 +31,28 @@ Subject <- rbind(subject_train, subject_test)
 Merged_Data <- cbind(Subject, Y, X)
 
 #Step 2: Extracts only the measurements on the mean and standard deviation for each measurement.
-TidyData <- Merged_Data %>% select(subject, code, contains("mean"), contains("std"))
+tdData <- Merged_Data %>% select(subject, code, contains("mean"), contains("std"))
 
 #Step 3: Uses descriptive activity names to name the activities in the data set.
-TidyData$code <- activities[TidyData$code, 2]
+tdData$code <- activities[tdData$code, 2]
 
 #Step 4: Appropriately labels the data set with descriptive variable names.
-names(TidyData)[2] = "activity"
-names(TidyData)<-gsub("Acc", "Accelerometer", names(TidyData))
-names(TidyData)<-gsub("Gyro", "Gyroscope", names(TidyData))
-names(TidyData)<-gsub("BodyBody", "Body", names(TidyData))
-names(TidyData)<-gsub("Mag", "Magnitude", names(TidyData))
-names(TidyData)<-gsub("^t", "Time", names(TidyData))
-names(TidyData)<-gsub("^f", "Frequency", names(TidyData))
-names(TidyData)<-gsub("tBody", "TimeBody", names(TidyData))
-names(TidyData)<-gsub("-mean()", "Mean", names(TidyData), ignore.case = TRUE)
-names(TidyData)<-gsub("-std()", "STD", names(TidyData), ignore.case = TRUE)
-names(TidyData)<-gsub("-freq()", "Frequency", names(TidyData), ignore.case = TRUE)
-names(TidyData)<-gsub("angle", "Angle", names(TidyData))
-names(TidyData)<-gsub("gravity", "Gravity", names(TidyData))
+names(tdData)[2] = "activity"
+names(tdData)<-gsub("Acc", "Accelerometer", names(tdData))
+names(tdData)<-gsub("Gyro", "Gyroscope", names(tdData))
+names(tdData)<-gsub("BodyBody", "Body", names(tdData))
+names(tdData)<-gsub("Mag", "Magnitude", names(tdData))
+names(tdData)<-gsub("^t", "Time", names(tdData))
+names(tdData)<-gsub("^f", "Frequency", names(tdData))
+names(tdData)<-gsub("tBody", "TimeBody", names(tdData))
+names(tdData)<-gsub("-mean()", "Mean", names(tdData), ignore.case = TRUE)
+names(tdData)<-gsub("-std()", "STD", names(tdData), ignore.case = TRUE)
+names(tdData)<-gsub("-freq()", "Frequency", names(tdData), ignore.case = TRUE)
+names(tdData)<-gsub("angle", "Angle", names(tdData))
+names(tdData)<-gsub("gravity", "Gravity", names(tdData))
 
 #Step 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-ResultData <- TidyData %>%
+ResultData <- tdData %>%
   group_by(subject, activity) %>%
   summarise_all(funs(mean))
 write.table(ResultData, file = "ResultData.txt", row.name=FALSE)

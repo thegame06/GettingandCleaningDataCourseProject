@@ -3,10 +3,10 @@
 
 This project contains two files: `run_analysis.R` and  `CodeBook.md`.
 
-Excercises:
+Details:
 
-1. Merges the training and the test sets to create one data set.
-2. Extracts only the measurements on the mean and standard deviation for each measurement.
-3. Uses descriptive activity names to name the activities in the data set
-4. Appropriately labels the data set with descriptive variable names.
-5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+`CodeBook.md.` describes the variables, the data, and any work that are performed to clean up the data.
+
+`run_analysis.R` contains all the coding for doing the course project, that includes downloading and unzipping the dataset that is used for this project.
+
+`ResultData.txt` is a written out text file from `run_analysis.R`, which is the average features of each subject and each activity. Please refer to `CodeBook.md.` for more explicit information.
